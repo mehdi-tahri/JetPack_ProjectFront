@@ -1,11 +1,10 @@
 const appConfig = require('./app.config');
 const JetpackService = require('./src/Service/Api/JetpackApi');
 const HttpClient = require('./src/HttpClient');
+const Jetpack = require('./src/Entity/Jetpack');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
-
-
 
 jetpackService.getJetpacks().then(jetpacks => {
     let html =  ' <div class="card-columns" id="cardColumn">\n';
@@ -55,11 +54,31 @@ document.getElementById('edit').onclick = () =>{
   id = document.getElementById('edit-id').value;
 
   jetpackService.edit(id,name,image).then(jetpack => {
+      document.getElementById("edit-name-" + id).textContent = jetpack.name;
+      document.getElementById("edit-image-" + id).src = jetpack.image;
+      document.getElementById("edit-image-" + id).value = jetpack.image;
 
+      document.getElementById('EditNom').value = ""
+      document.getElementById('EditImage').value = ""
   });
   $('#modalEdit').modal('hide');
 }
 
+document.getElementById('book').onclick = () =>{
+  id = document.getElementById('book-id').value;
+  jetpackService.reserver(id).then(jetpack => {
+      let html =
+        '<div class="card" style="width: 18rem;">\n' +
+        '  <img src="'+ jetpack.image +'" class="card-img-top" alt="..." id="book-image-'+jetpack.id+'" value="'+ jetpack.image +'">\n' +
+        '  <div class="card-body">\n' +
+        '    <h5 class="card-title" id="book-name-'+jetpack.id+'" value="' + jetpack.name + '">' + jetpack.name + '</h5>\n' +
+        '  </div>\n' +
+        '</div>';
+      document.getElementById('cardColumnBook').innerHTML +=html;
+      document.getElementById('cardColumnAvailable').innerHTML = "";
+  });
+  $('#modalReserver').modal('hide');
+}
 
 editJetpack = function (id) {
   /// Rajouter dans le modal edit les valeur de nom et url + un hidden avec l'id du jetpack a edit grace au bouton
@@ -67,3 +86,55 @@ editJetpack = function (id) {
   document.getElementById('EditImage').value = document.getElementById('edit-image-'+id+'').src;
   document.getElementById('edit-id').value = id;
 }
+
+search = function() {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    let backgroundColorStartDate = "white";
+    let backgroundColorEndDate = "white";
+    if(isValidDates(startDate, endDate)) {
+        jetpackService.searchJetpack(startDate, endDate).then(jetpacks => {
+            document.getElementById('cardColumnAvailable').innerHTML = "";
+
+            if(jetpacks.length<1){
+              html = ' <div class="container center" style="margin-top: 30px; margin-bottom: 30px;">\n'+
+                      ' <div class=" inner" style="width: 30rem; border: 3px solid green;">          \n'+
+                      ' <h4 class="center"> Désolé, aucun Jetpack n\'est diponible dans cette periode</h4>\n'+
+                      ' </div>\n'+
+                      ' </div>'
+              document.getElementById('jetpacksAvailable').innerHTML +=html;
+            }
+            else{
+            jetpacks.forEach((jetpack) => {
+                let html =  '';
+                  html +=
+                      '<div class="card" style="width: 18rem;">\n' +
+                      '  <img src="'+ jetpack.image +'" class="card-img-top" alt="..." id="book-image-'+jetpack.id+'" value="'+ jetpack.image +'">\n' +
+                      '  <div class="card-body">\n' +
+                      '    <h5 class="card-title" id="book-name-'+jetpack.id+'" value="' + jetpack.name + '">' + jetpack.name + '</h5>\n' +
+                      '    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReserver" id="'+jetpack.id+'" onclick="ReserverJetpack(this.id)" > Reserver </button>\n' +
+                      '  </div>\n' +
+                      '</div>';
+                document.getElementById('cardColumnAvailable').innerHTML +=html;
+
+            });
+          }
+        });
+    }else{
+         backgroundColorStartDate = "red";
+         backgroundColorEndDate = "red";
+    }
+
+    document.getElementById('startDate').style.backgroundColor = backgroundColorStartDate;
+    document.getElementById('endDate').style.backgroundColor = backgroundColorEndDate;
+};
+
+isValidDates = function (startDate, endDate) {
+    return new Date(startDate) <= new Date(endDate);
+};
+
+ReserverJetpack = function (id){
+  document.getElementById('BookName').innerHTML = document.getElementById('book-name-'+id+'').innerHTML;
+  document.getElementById('book-id').value = id;
+}
+
