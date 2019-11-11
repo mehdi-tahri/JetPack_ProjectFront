@@ -54,7 +54,12 @@ document.getElementById('edit').onclick = () =>{
   id = document.getElementById('edit-id').value;
 
   jetpackService.edit(id,name,image).then(jetpack => {
+      document.getElementById("edit-name-" + id).textContent = jetpack.name;
+      document.getElementById("edit-image-" + id).src = jetpack.image;
+      document.getElementById("edit-image-" + id).value = jetpack.image;
 
+      document.getElementById('EditNom').value = ""
+      document.getElementById('EditImage').value = ""
   });
   $('#modalEdit').modal('hide');
 }
@@ -94,7 +99,7 @@ search = function() {
             if(jetpacks.length<1){
               html = ' <div class="container center" style="margin-top: 30px; margin-bottom: 30px;">\n'+
                       ' <div class=" inner" style="width: 30rem; border: 3px solid green;">          \n'+
-                      ' <h4 class="center"> Désoler aucun Jetpack n\'est diponible dans cette periode</h4>\n'+
+                      ' <h4 class="center"> Désolé, aucun Jetpack n\'est diponible dans cette periode</h4>\n'+
                       ' </div>\n'+
                       ' </div>'
               document.getElementById('jetpacksAvailable').innerHTML +=html;
