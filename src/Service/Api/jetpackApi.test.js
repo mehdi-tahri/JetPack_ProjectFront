@@ -23,3 +23,30 @@ describe('JetpackApi  get Jetpacks', function () {
         });
     });
 });
+
+describe('JetpackApi  Create Jetpacks', function () {
+
+    test('Test save (create jetpack) with corresponding value', () => {
+        let httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue(
+            {
+                id: "123",
+                name: "My Jetpack",
+                image: "base64..."
+            }
+        );
+
+        let jetpackApi = new JetpackApi(httpClientMock);
+        jetpackApi.save('x','y').then(function (resp) {
+            expect(resp.id).toBe("123");
+            expect(resp.name).toBe("My Jetpack");
+            expect(resp.image).toBe("base64...");
+            expect(resp).toBeInstanceOf(Jetpack);
+        }).catch((e) => {
+            fail(e)
+        });
+    });
+});

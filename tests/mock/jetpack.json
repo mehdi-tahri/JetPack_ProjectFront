@@ -22,7 +22,7 @@
             "image": "https://gamepedia.cursecdn.com/fortnite_gamepedia/e/e1/Jetpack_icon.png"
           },
           {
-            "id": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d",
+            "id": "a8019ec0-bfdc-4140-9dba-4927e5ef5c8d",
             "name": "Jetpack JackTalior",
             "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
           }
@@ -50,11 +50,40 @@
       "is": {
         "headers": { "Access-Control-Allow-Origin": "*" },
         "body": {
-            "id": "a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d",
+            "id": "a8019ec0-bfdc-4140-9dbz-4927e5ef5c8d",
             "name": "Le jetpack",
-            "image": "Image 3"
+            "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
           }
       }
     }
   ]
+},
+{
+  "predicates": [
+    {
+      "equals": {
+        "method": "POST",
+        "path": "/jetpacks/search"
+      }
+    },
+    {
+      "matches": {
+      }
+    }
+  ],
+  "responses": [
+    {
+      "is": {
+        "headers": { "Access-Control-Allow-Origin": "*" },
+        "body": [
+          {
+            "id": "1",
+            "name": "Mon Jetpack",
+            "image": "http://www.slate.fr/sites/default/files/styles/1060x523/public/backviewjetpack.jpg"
+          }
+        ]
+      }
+    }
+  ]
 }
+
