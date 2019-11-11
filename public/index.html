@@ -96,6 +96,33 @@
     </div>
 
 
+
+    <div class="container center" style="margin-bottom: 30px;">
+      <div class=" inner" style="width: 18rem; border: 3px solid green;">
+        <h2 >Réservez un jetpack</h2>
+      </div>
+    </div>
+    <div class="center">
+      <div class="input-group format-date inner">
+          <label for="startDate">Debut : &nbsp;</label><input type="date" name="startDate" id="startDate" class="form-control-sm hide-replaced">
+          <label for="startEnd">&nbsp; Fin : &nbsp;</label><input type="date" name="endDate" id="endDate" class="form-control-sm hide-replaced">&nbsp;
+          <button type="button" onclick="search()" class="visible">Rechercher</button>
+      </div>
+    </div>
+    <br>
+    <div class="container center" id="jetpacksAvailable">
+      <div class="card-columns" id="cardColumnAvailable">
+
+      </div>
+    </div>
+    <br>
+    <div class="container center" style="margin-top: 30px; margin-bottom: 30px;">
+      <div class=" inner" style="width: 18rem; border: 3px solid green;">
+        <h2 class="center">Réservations  </h2>
+      </div>
+    </div>
+
+
 </body>
 <script type="text/javascript" src="dist/bundle.js"></script>
 </html>

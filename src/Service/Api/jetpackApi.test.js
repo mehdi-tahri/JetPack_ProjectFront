@@ -77,3 +77,33 @@ describe('JetpackApi  Edit Jetpacks', function () {
         });
     });
 });
+
+
+describe('JetpackApi  search Jetpacks available', function () {
+
+    test('Test searchJetpack (search jetpack)', () => {
+        let httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue([
+            {
+                id: "123",
+                name: "The Jetpack",
+                image: "base64..."
+            }
+        ]);
+
+        let jetpackApi = new JetpackApi(httpClientMock);
+        jetpackApi.searchJetpack('01-01-1998','01-01-2019').then(resp => {
+            expect(Array.isArray(resp)).toBe(true);
+            expect(resp.length).toBe(1);
+            expect(resp[0].id).toBe("123");
+            expect(resp[0].name).toBe("The Jetpack");
+            expect(resp[0].image).toBe("base64...");
+            expect(resp[0]).toBeInstanceOf(Jetpack);
+        }).catch((e) => {
+            fail(e);
+        });
+    });
+});

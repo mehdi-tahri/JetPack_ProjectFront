@@ -67,3 +67,45 @@ editJetpack = function (id) {
   document.getElementById('EditImage').value = document.getElementById('edit-image-'+id+'').src;
   document.getElementById('edit-id').value = id;
 }
+
+
+search = function() {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    let backgroundColorStartDate = "white";
+    let backgroundColorEndDate = "white";
+    if(isValidDates(startDate, endDate)) {
+        jetpackService.searchJetpack(startDate, endDate).then(jetpacks => {
+            document.getElementById('cardColumnAvailable').innerHTML = "";
+            jetpacks.forEach((jetpack) => {
+                let html =  '';
+                  html +=
+                      '<div class="card" style="width: 18rem;">\n' +
+                      '  <img src="'+ jetpack.image +'" class="card-img-top" alt="..." id="book-image-'+jetpack.id+'" value="'+ jetpack.image +'">\n' +
+                      '  <div class="card-body">\n' +
+                      '    <h5 class="card-title" id="book-name-'+jetpack.id+'" value="' + jetpack.name + '">' + jetpack.name + '</h5>\n' +
+                      '    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReserver" id="'+jetpack.id+'" onclick="ReserverJetpack(this.id)" > Reserver </button>\n' +
+                      '  </div>\n' +
+                      '</div>';
+                document.getElementById('cardColumnAvailable').innerHTML +=html;
+
+            });
+        });
+    }else{
+         backgroundColorStartDate = "red";
+         backgroundColorEndDate = "red";
+    }
+
+    document.getElementById('startDate').style.backgroundColor = backgroundColorStartDate;
+    document.getElementById('endDate').style.backgroundColor = backgroundColorEndDate;
+};
+
+isValidDates = function (startDate, endDate) {
+    return new Date(startDate) <= new Date(endDate);
+};
+
+ReserverJetpack = function (id){
+  document.getElementById('BookName').innerHTML = document.getElementById('book-name-'+id+'').innerHTML;
+  document.getElementById('book-id').value = id;
+}
+
