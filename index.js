@@ -90,6 +90,16 @@ search = function() {
     if(isValidDates(startDate, endDate)) {
         jetpackService.searchJetpack(startDate, endDate).then(jetpacks => {
             document.getElementById('cardColumnAvailable').innerHTML = "";
+
+            if(jetpacks.length<1){
+              html = ' <div class="container center" style="margin-top: 30px; margin-bottom: 30px;">\n'+
+                      ' <div class=" inner" style="width: 30rem; border: 3px solid green;">          \n'+
+                      ' <h4 class="center"> Désoler aucun Jetpack n\'est diponible dans cette periode</h4>\n'+
+                      ' </div>\n'+
+                      ' </div>'
+              document.getElementById('jetpacksAvailable').innerHTML +=html;
+            }
+            else{
             jetpacks.forEach((jetpack) => {
                 let html =  '';
                   html +=
@@ -103,6 +113,7 @@ search = function() {
                 document.getElementById('cardColumnAvailable').innerHTML +=html;
 
             });
+          }
         });
     }else{
          backgroundColorStartDate = "red";
