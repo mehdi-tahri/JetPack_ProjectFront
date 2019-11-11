@@ -32,8 +32,8 @@
   }
 </style>
 
-<body>
-<div class="container center" style="margin-top: 30px;">
+<body >
+    <div class="container center" style="margin-top: 30px;">
       <div class=" inner" style="width: 18rem; border: 3px solid green;">
         <h2>Liste de tous les Jetpacks </h2>
       </div>
@@ -63,7 +63,7 @@
             <input type="text" id="image" name="image">
             <br>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-add">Close</button>
               <button type="button" class="btn btn-success btn-lg" id="save">Ajouter</button>
             </div>
           </div>
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-<div id="modalEdit" class="modal fade" role="dialog" aria-hidden="true">
+    <div id="modalEdit" class="modal fade" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -87,7 +87,7 @@
             <br>
             <input id="edit-id" name="edit-id" type="hidden" value="">
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-edit">Close</button>
               <button type="button" class="btn btn-success btn-lg" id="edit">Edit</button>
             </div>
           </div>
@@ -95,7 +95,60 @@
       </div>
     </div>
 
+    <div id="modalReserver" class="modal fade" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Reserver le jetpack</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            Valider la réservation du Jetpack <label type="text" id="BookName" name="BookName"> </label>?
+            <br>
+            <input id="book-id" name="book-id" type="hidden" value="">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-book">Close</button>
+
+            <button type="button" class="btn btn-success btn-lg" id="book">Valider</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container center" style="margin-bottom: 30px;">
+      <div class=" inner" style="width: 18rem; border: 3px solid green;">
+        <h2 >Réservez un jetpack</h2>
+      </div>
+    </div>
+    <div class="center">
+      <div class="input-group format-date inner">
+          <label for="startDate">Debut : &nbsp;</label><input type="date" name="startDate" id="startDate" class="form-control-sm hide-replaced">
+          <label for="startEnd">&nbsp; Fin : &nbsp;</label><input type="date" name="endDate" id="endDate" class="form-control-sm hide-replaced">&nbsp;
+          <button type="button" onclick="search()" class="visible">Rechercher</button>
+      </div>
+    </div>
+    <br>
+    <div class="container center" id="jetpacksAvailable">
+      <div class="card-columns" id="cardColumnAvailable">
+
+      </div>
+    </div>
+    <br>
+    <div class="container center" style="margin-top: 30px; margin-bottom: 30px;">
+      <div class=" inner" style="width: 18rem; border: 3px solid green;">
+        <h2 class="center">Réservations  </h2>
+      </div>
+    </div>
+    <div class = "container" id="booking">
+      <div class="card-columns" id="cardColumnBook">
+
+      </div>
+
+    </div>
 
 </body>
 <script type="text/javascript" src="dist/bundle.js"></script>
 </html>
+
