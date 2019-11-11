@@ -66,4 +66,50 @@ context('Jetpack list', () => {
         cy.get('#book-image-a8019ec0-bfdc-4140-9dbz-4927e5ef5c8d').should('be.visible')
 
     })
+
+    it('Test erreur reservation', () => {
+        //setup startDate
+        cy.scrollTo('bottom')
+        cy.wait(1000)
+        cy.get('#startDate').type('1998-07-26')
+        cy.wait(1000)
+        cy.contains('Rechercher').click()
+        cy.wait(1000)
+        
+        //catch error (missing date)
+        cy.get('#startDate')
+        .should(($input) => {
+            expect($input).to.have.css('background-color', "rgb(255, 0, 0)");
+            });
+        cy.get('#endDate')
+        .should(($input) => {
+            expect($input).to.have.css('background-color', "rgb(255, 0, 0)");
+            });
+
+        //setup endDate
+        cy.wait(1000)
+        cy.get('#endDate').type('1997-07-26')
+        cy.wait(1000)
+
+        //catch error (incoherent date)
+        cy.get('#startDate')
+        .should(($input) => {
+            expect($input).to.have.css('background-color', "rgb(255, 0, 0)");
+            });
+        cy.get('#endDate')
+        .should(($input) => {
+            expect($input).to.have.css('background-color', "rgb(255, 0, 0)");
+            });
+        
+        //setup coherent endDate
+        cy.wait(1000)
+        cy.get('#endDate').type('1999-07-26')
+        cy.wait(1000)
+        cy.contains('Rechercher').click()
+        cy.wait(1000)
+        
+        //if none available
+        cy.contains("Désoler aucun Jetpack n'est diponible dans cette periode").should('be.visible')
+
+    })
 });
