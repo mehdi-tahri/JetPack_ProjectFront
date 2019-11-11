@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1573491592404" clover="3.2.0">
-  <project timestamp="1573491592404" name="All files">
-    <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="13" elements="39" coveredelements="39" complexity="0" loc="26" ncloc="26" packages="2" files="2" classes="2"/>
+<coverage generated="1573493460071" clover="3.2.0">
+  <project timestamp="1573493460071" name="All files">
+    <metrics statements="39" coveredstatements="39" conditionals="0" coveredconditionals="0" methods="18" coveredmethods="18" elements="57" coveredelements="57" complexity="0" loc="39" ncloc="39" packages="2" files="2" classes="2"/>
     <package name="Entity">
       <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
       <file name="Jetpack.js" path="/home/tahrim/Téléchargements/Cours/2A/TestUnitaire/Projet_finale/JetPack_ProjectFront/src/Entity/Jetpack.js">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
       </file>
     </package>
     <package name="Service.Api">
-      <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <metrics statements="29" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11"/>
       <file name="JetpackApi.js" path="/home/tahrim/Téléchargements/Cours/2A/TestUnitaire/Projet_finale/JetPack_ProjectFront/src/Service/Api/JetpackApi.js">
-        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+        <metrics statements="29" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
@@ -38,6 +38,19 @@
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
       </file>
     </package>
   </project>

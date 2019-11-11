@@ -36,4 +36,26 @@ module.exports = class  {
         });
     }
 
+    searchJetpack(startDate, endDate){
+        return this.httpClient.fetch('/jetpacks/search',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: "startDate=" + startDate + "&endDate=" + endDate
+            }
+
+        ).then(rows => {
+            return rows.map(row => {
+                let jetpack = new JetpackApi();
+                jetpack.id      = row.id;
+                jetpack.name    = row.name;
+                jetpack.image   = row.image;
+
+                return jetpack
+            });
+        });
+    }
+
 };
