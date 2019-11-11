@@ -112,4 +112,28 @@ context('Jetpack list', () => {
         cy.contains("Désoler aucun Jetpack n'est diponible dans cette periode").should('be.visible')
 
     })
+
+    it('Test different adding button', () => {
+        //test Jetpack Fortnite
+        cy.get('#a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d').click()
+        cy.wait(1000)
+        cy.get('#close-edit').click()
+        cy.wait(1000)
+        cy.get('#a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d').click()
+        cy.wait(1000)
+        cy.get('#edit').click()
+
+        cy.wait(1000)
+
+        //test Jetpack JackTalior
+        cy.get('#a8019ec0-bfdc-4140-9dba-4927e5ef5c8d').click()
+        cy.wait(1000)
+        cy.get('#close-edit').click()
+        cy.wait(1000)
+        cy.get('#a8019ec0-bfdc-4140-9dba-4927e5ef5c8d').click()
+        cy.wait(1000)
+        cy.get('#edit').click()  
+    })
+
+    
 });
