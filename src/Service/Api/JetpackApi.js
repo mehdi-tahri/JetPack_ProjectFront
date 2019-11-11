@@ -25,4 +25,15 @@ module.exports = class  {
               return jetpack;
         });
     }
+
+    edit(id,name, image) {
+        return this.httpClient.fetch('/jetpacks', {method:'POST',body:"name="+name+"&image="+image+"&id="+id+""}).then(row => {
+              let jetpack = new JetpackApi();
+              jetpack.id = row.id;
+              jetpack.name = row.name;
+              jetpack.image = row.image;
+              return jetpack;
+        });
+    }
+
 };

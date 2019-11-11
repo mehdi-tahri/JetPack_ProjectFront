@@ -71,6 +71,31 @@
       </div>
     </div>
 
+<div id="modalEdit" class="modal fade" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Edit a jetpack</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            Nom du Jetpack :
+            <input type="text" id="EditNom" name="EditNom">
+            <br>
+            Url de l'image :
+            <input type="text" id="EditImage" name="EditImage">
+            <br>
+            <input id="edit-id" name="edit-id" type="hidden" value="">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success btn-lg" id="edit">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </body>
 <script type="text/javascript" src="dist/bundle.js"></script>
 </html>

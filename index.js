@@ -49,3 +49,21 @@ document.getElementById('save').onclick = () =>{
 
 }
 
+document.getElementById('edit').onclick = () =>{
+  name = document.getElementById('EditNom').value;
+  image = document.getElementById('EditImage').value;
+  id = document.getElementById('edit-id').value;
+
+  jetpackService.edit(id,name,image).then(jetpack => {
+
+  });
+  $('#modalEdit').modal('hide');
+}
+
+
+editJetpack = function (id) {
+  /// Rajouter dans le modal edit les valeur de nom et url + un hidden avec l'id du jetpack a edit grace au bouton
+  document.getElementById('EditNom').value = document.getElementById('edit-name-'+id+'').innerHTML;
+  document.getElementById('EditImage').value = document.getElementById('edit-image-'+id+'').src;
+  document.getElementById('edit-id').value = id;
+}
