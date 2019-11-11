@@ -18,7 +18,11 @@ module.exports = class  {
     }
 
     save(name,image) {
-        return this.httpClient.fetch('/jetpacks', {method:'POST',body:"name="+name+"&image="+image+""}).then(row => {
+        return this.httpClient.fetch('/jetpacks',
+        {
+            method:'POST',
+            body:"name="+name+"&image="+image+""
+          }).then(row => {
               let jetpack = new JetpackApi();
               jetpack.id = row.id;
               jetpack.name = row.name;
@@ -28,7 +32,11 @@ module.exports = class  {
     }
 
     edit(id,name, image) {
-        return this.httpClient.fetch('/jetpacks', {method:'POST',body:"name="+name+"&image="+image+"&id="+id+""}).then(row => {
+        return this.httpClient.fetch('/jetpacks',
+        {
+          method:'POST',
+          body:"name="+name+"&image="+image+"&id="+id+""
+        }).then(row => {
               let jetpack = new JetpackApi();
               jetpack.id = row.id;
               jetpack.name = row.name;
@@ -38,13 +46,13 @@ module.exports = class  {
     }
 
     searchJetpack(startDate, endDate){
-        return this.httpClient.fetch('/jetpacks/search',
+        return this.httpClient.fetch('/jetpacks',
             {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: "startDate=" + startDate + "&endDate=" + endDate
+                body: "startDate=" +(new Date(startDate)).getTime() / 1000  + "&endDate=" + (new Date(endDate)).getTime() / 1000
             }
 
         ).then(rows => {
@@ -60,7 +68,11 @@ module.exports = class  {
     }
 
     reserver(id) {
-        return this.httpClient.fetch('/jetpacks', {method:'POST',body:"id="+id}).then(row => {
+        return this.httpClient.fetch('/jetpacks',
+          {
+              method:'POST',
+              body:"id="+id
+          }).then(row => {
               let jetpack = new JetpackApi();
               jetpack.id = row.id;
               jetpack.name = row.name
@@ -69,4 +81,3 @@ module.exports = class  {
         });
     }
 };
-
