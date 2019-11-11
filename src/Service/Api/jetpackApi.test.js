@@ -1,5 +1,6 @@
 const JetpackApi = require('./JetpackApi');
 const Jetpack = require('../../Entity/Jetpack');
+
 describe('JetpackApi  get Jetpacks', function () {
 
     test('Test GetJetpacks', () => {
@@ -78,7 +79,6 @@ describe('JetpackApi  Edit Jetpacks', function () {
     });
 });
 
-
 describe('JetpackApi  search Jetpacks available', function () {
 
     test('Test searchJetpack (search jetpack)', () => {
@@ -107,3 +107,31 @@ describe('JetpackApi  search Jetpacks available', function () {
         });
     });
 });
+
+describe('JetpackApi  reserver Jetpacks ', function () {
+
+    test('Test reserver (reserver un jetpack)', () => {
+        let httpClientMock = {
+            fetch: jest.fn()
+        };
+
+        httpClientMock.fetch.mockResolvedValue(
+            {
+                id: "123",
+                name: "The Jetpack",
+                image: "base64..."
+            }
+        );
+
+        let jetpackApi = new JetpackApi(httpClientMock);
+        jetpackApi.reserver('123').then(resp => {
+            expect(resp.id).toBe("123");
+            expect(resp.name).toBe("The Jetpack");
+            expect(resp.image).toBe("base64...");
+            expect(resp).toBeInstanceOf(Jetpack);
+        }).catch((e) => {
+            fail(e);
+        });
+    });
+});
+
