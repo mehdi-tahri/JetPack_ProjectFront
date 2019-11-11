@@ -1,11 +1,10 @@
 const appConfig = require('./app.config');
 const JetpackService = require('./src/Service/Api/JetpackApi');
 const HttpClient = require('./src/HttpClient');
+const Jetpack = require('./src/Entity/Jetpack');
 
 const httpClient = new HttpClient(appConfig.apiUrl);
 const jetpackService = new JetpackService(httpClient);
-
-
 
 jetpackService.getJetpacks().then(jetpacks => {
     let html =  ' <div class="card-columns" id="cardColumn">\n';
@@ -60,6 +59,21 @@ document.getElementById('edit').onclick = () =>{
   $('#modalEdit').modal('hide');
 }
 
+document.getElementById('book').onclick = () =>{
+  id = document.getElementById('book-id').value;
+  jetpackService.reserver(id).then(jetpack => {
+      let html =
+        '<div class="card" style="width: 18rem;">\n' +
+        '  <img src="'+ jetpack.image +'" class="card-img-top" alt="..." id="book-image-'+jetpack.id+'" value="'+ jetpack.image +'">\n' +
+        '  <div class="card-body">\n' +
+        '    <h5 class="card-title" id="book-name-'+jetpack.id+'" value="' + jetpack.name + '">' + jetpack.name + '</h5>\n' +
+        '  </div>\n' +
+        '</div>';
+      document.getElementById('cardColumnBook').innerHTML +=html;
+      document.getElementById('cardColumnAvailable').innerHTML = "";
+  });
+  $('#modalReserver').modal('hide');
+}
 
 editJetpack = function (id) {
   /// Rajouter dans le modal edit les valeur de nom et url + un hidden avec l'id du jetpack a edit grace au bouton
@@ -67,7 +81,6 @@ editJetpack = function (id) {
   document.getElementById('EditImage').value = document.getElementById('edit-image-'+id+'').src;
   document.getElementById('edit-id').value = id;
 }
-
 
 search = function() {
     const startDate = document.getElementById('startDate').value;
@@ -77,6 +90,16 @@ search = function() {
     if(isValidDates(startDate, endDate)) {
         jetpackService.searchJetpack(startDate, endDate).then(jetpacks => {
             document.getElementById('cardColumnAvailable').innerHTML = "";
+
+            if(jetpacks.length<1){
+              html = ' <div class="container center" style="margin-top: 30px; margin-bottom: 30px;">\n'+
+                      ' <div class=" inner" style="width: 30rem; border: 3px solid green;">          \n'+
+                      ' <h4 class="center"> Désoler aucun Jetpack n\'est diponible dans cette periode</h4>\n'+
+                      ' </div>\n'+
+                      ' </div>'
+              document.getElementById('jetpacksAvailable').innerHTML +=html;
+            }
+            else{
             jetpacks.forEach((jetpack) => {
                 let html =  '';
                   html +=
@@ -90,6 +113,7 @@ search = function() {
                 document.getElementById('cardColumnAvailable').innerHTML +=html;
 
             });
+          }
         });
     }else{
          backgroundColorStartDate = "red";
