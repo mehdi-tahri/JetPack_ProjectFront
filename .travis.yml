@@ -16,3 +16,4 @@ before_install:
 script:
   - npm run unit.test.coverage
   - npm run ui.test
+  
