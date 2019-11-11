@@ -135,5 +135,35 @@ context('Jetpack list', () => {
         cy.get('#edit').click()  
     })
 
+    it('.as() - alias a DOM element for later use', () => {
+        cy.contains('Liste de tous les Jetpacks').should('be.visible')
+    
+            
+        cy.get('#jetpacks').should('be.visible')
+        cy.get('#cardColumn').should('be.visible')
+        //Verif first jetpack
+        cy.get('#edit-image-a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d').should('be.visible')
+        cy.get('#edit-name-a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d').should('be.visible')
+        cy.get('#a8019ec0-bfdc-4140-9dbb-4927e5ef5c8d').should('be.visible')
+        
+        //Verif second jetpack
+        cy.get('#edit-name-a8019ec0-bfdc-4140-9dba-4927e5ef5c8d').should('be.visible')
+        cy.get('#edit-image-a8019ec0-bfdc-4140-9dba-4927e5ef5c8d').should('be.visible')
+        cy.get('#a8019ec0-bfdc-4140-9dba-4927e5ef5c8d').should('be.visible')
+    
+        //Verif date
+        cy.get('#startDate.form-control-sm').should('be.visible')
+        cy.get('#endDate').should('be.visible')
+    
+        cy.get('#edit-image-a8019ec0-bfdc-4140-9dbz-4927e5ef5c8d').should('be.visible')
+        cy.get('#book-image-a8019ec0-bfdc-4140-9dbz-4927e5ef5c8d').should('be.visible')
+    
+        cy.get('Ajouter').should('be.visible')
+        cy.get('Réservez un jetpack').should('be.visible')
+        cy.get('Debut :').should('be.visible')
+        cy.get(' Fin :').should('be.visible')
+        cy.get('Réservations').should('be.visible')
+      })
+
     
 });
