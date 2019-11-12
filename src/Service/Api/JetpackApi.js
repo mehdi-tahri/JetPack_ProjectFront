@@ -21,7 +21,7 @@ module.exports = class  {
         return this.httpClient.fetch('/jetpacks',
         {
             method:'POST',
-            body:"name="+name+"&image="+image+""
+            body:{"name":""+name+"","image":""+image+""}
           }).then(row => {
               let jetpack = new JetpackApi();
               jetpack.id = row.id;
@@ -35,7 +35,7 @@ module.exports = class  {
         return this.httpClient.fetch('/jetpacks',
         {
           method:'POST',
-          body:"name="+name+"&image="+image+"&id="+id+""
+          body:{"id":""+id+"","name":""+name+"","image":""+image+""}
         }).then(row => {
               let jetpack = new JetpackApi();
               jetpack.id = row.id;
@@ -48,7 +48,7 @@ module.exports = class  {
     searchJetpack(startDate, endDate){
         return this.httpClient.fetch('/jetpacks',
             {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -68,10 +68,10 @@ module.exports = class  {
     }
 
     reserver(id) {
-        return this.httpClient.fetch('/jetpacks',
+        return this.httpClient.fetch('/booking',
           {
               method:'POST',
-              body:"id="+id
+              body:{"id":""+id+""}
           }).then(row => {
               let jetpack = new JetpackApi();
               jetpack.id = row.id;
