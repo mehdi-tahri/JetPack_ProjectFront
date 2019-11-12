@@ -10,10 +10,9 @@ addons:
 before_install:
   - npm install
   - npm run build
-  - npm run start.ci
-  - npm run mountebank.start.ci
+  - npm run start
+  - npm run mountebank.start
 
 script:
   - npm run unit.test.coverage
   - npm run ui.test
-  
