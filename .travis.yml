@@ -7,12 +7,10 @@ addons:
     packages:
     - libgconf-2-4
 
-before_install:
+install:
   - npm install
   - npm run build
   - npm run start.ci
   - npm run mountebank.start.ci
-
-script:
   - npm run unit.test.coverage
   - npm run ui.test
