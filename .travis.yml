@@ -7,7 +7,7 @@ addons:
     packages:
     - libgconf-2-4
 
-install:
+before_install:
   - npm install
   - npm run build
   - npm run start.ci
